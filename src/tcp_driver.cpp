@@ -146,7 +146,6 @@ int sync_connect_and_authenticate(MYSQL *conn, const std::string &user,
                                   long offset)
 {
 
-  char *binlog_name= "";
   char *binlog_pos;
   ushort binlog_flags= 0;
   uchar buf[1024];

@@ -37,7 +37,6 @@ public:
     virtual ~Row_of_fields() {}
 
     Row_of_fields& operator=(const Row_of_fields &right);
-    Row_of_fields& operator=(Row_of_fields &right);
 
 private:
 

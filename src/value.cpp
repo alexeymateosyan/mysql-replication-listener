@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
 #include "value.h"
 #include "binlog_event.h"
 #include <iomanip>
+#include <inttypes.h>
 
 using namespace mysql;
 using namespace mysql::system;
@@ -324,7 +325,8 @@ double Value::as_double() const
 
 void Converter::to(std::string &str, const Value &val) const
 {
-  char buffer[20];
+  char buffer[20] = {0};
+
   if (val.is_null())
   {
     str= "(NULL)";
@@ -365,7 +367,7 @@ void Converter::to(std::string &str, const Value &val) const
       break;
 
     case MYSQL_TYPE_LONGLONG:
-      sprintf(buffer, "%lld", val.as_int64());
+      sprintf(buffer, "%"PRId64, val.as_int64());
       str= buffer;
       break;
     case MYSQL_TYPE_INT24:

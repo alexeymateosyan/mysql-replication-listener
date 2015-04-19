@@ -16,7 +16,7 @@ FIND_PATH(MYSQL_INCLUDE_DIR mysql.h
           NO_DEFAULT_PATH
 )
 
-SET(MYSQL_NAMES mysqlclient mysqlclient_r)
+SET(MYSQL_NAMES mysqlclient mysqlclient_r perconaserverclient perconaserverclient_r)
 FIND_LIBRARY(MYSQL_LIBRARY
   NAMES ${MYSQL_NAMES}
   PATHS 

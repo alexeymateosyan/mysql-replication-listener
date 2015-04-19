@@ -135,4 +135,10 @@ int Binary_log::connect()
   return m_driver->connect();
 }
 
+Binary_log::~Binary_log() {
+  if (m_driver) {
+    m_driver->disconnect();
+  }
+}
+
 }

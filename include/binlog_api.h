@@ -129,7 +129,7 @@ private:
   std::string m_binlog_file;
 public:
   Binary_log(system::Binary_log_driver *drv);
-  ~Binary_log() {}
+  ~Binary_log();
   int connect();
   int connect(ulong position);
 

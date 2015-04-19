@@ -31,7 +31,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 include_directories(include)
 link_directories(${PROJECT_BINARY_DIR}/lib)
 if(DISABLE_SECOND_DATETIME)
-    set(CMAKE_CXX_FLAGS -DMYSQL_TYPES_DISABLE_SECOND_DATETIME)
+    set(CMAKE_CXX_FLAGS -DMYSQL_TYPES_DISABLE_SECOND_DATETIME ${CMAKE_CXX_FLAGS})
 endif(DISABLE_SECOND_DATETIME)
 
 # Locate Google Test package and enable tests if it is found

@@ -149,6 +149,7 @@ uint32_t calc_field_size(unsigned char column_type, const unsigned char *field_p
       }
       break;
     }
+#ifndef MYSQL_TYPES_DISABLE_SECOND_DATETIME
   case MYSQL_TYPE_TIME2:
     if (metadata >  MAX_TIME_WIDTH)
       length= 3 + (metadata - MAX_TIME_WIDTH)/2;
@@ -167,6 +168,7 @@ uint32_t calc_field_size(unsigned char column_type, const unsigned char *field_p
     else
       length= 5;
     break;
+#endif //MYSQL_TYPES_DISABLE_SECOND_DATETIME
   default:
     length= UINT_MAX;
   }

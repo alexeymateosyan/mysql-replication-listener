@@ -34,11 +34,11 @@ namespace mysql
 */
 const char* str_error(int error_no)
 {
-  char *msg= NULL;
+  char const* msg= NULL;
   if (error_no != ERR_OK)
   {
     if ((error_no > ERR_OK) && (error_no < ERROR_CODE_COUNT))
-      msg= (char*)bapi_error_messages[error_no];
+      msg= bapi_error_messages[error_no];
     else
       msg= "Unknown error";
    }
@@ -134,4 +134,5 @@ int Binary_log::connect()
 {
   return m_driver->connect();
 }
+
 }

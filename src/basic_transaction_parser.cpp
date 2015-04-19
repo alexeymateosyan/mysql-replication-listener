@@ -91,8 +91,7 @@ process_transaction_state(mysql::Binary_log_event *incomming_event)
        * Propagate the start time for the transaction to the newly created
        * event.
        */
-      mysql::Transaction_log_event *trans=
-      mysql::create_transaction_log_event();
+      mysql::Transaction_log_event *trans= mysql::create_transaction_log_event();
       trans->header()->timestamp= m_start_time;
 
       while( m_event_stack.size() > 0)
@@ -106,10 +105,9 @@ process_transaction_state(mysql::Binary_log_event *incomming_event)
             /*
              Index the table name with a table id to ease lookup later.
             */
-            mysql::Table_map_event *tm=
-            static_cast<mysql::Table_map_event *>(event);
-            trans->m_table_map.insert(mysql::
-                                      Event_index_element(tm->table_id,tm));
+            mysql::Table_map_event *tm= static_cast<mysql::Table_map_event *>(event);
+
+            trans->m_table_map.insert(mysql::Event_index_element(tm->table_id, event));
             trans->m_events.push_back(event);
           }
           break;
@@ -150,12 +148,8 @@ Transaction_log_event *create_transaction_log_event(void)
 
 Transaction_log_event::~Transaction_log_event()
 {
-  Int_to_Event_map::iterator it;
-  for(it = m_table_map.begin(); it != m_table_map.end();)
-  {
-    /* No need to delete the event here; it happens in the next iteration */
-    m_table_map.erase(it++);
-  }
+  /* No need to delete the event here; it happens in the next iteration */
+  m_table_map.clear();
 
   while (m_events.size() > 0)
   {
